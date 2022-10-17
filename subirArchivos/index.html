@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir archivo</title>
+</head>
+<body>
+    <form method="post" action="subir.php" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Subir múltiples imágenes</legend>
+            <label for="upload">Elija las imágenes que quiere subir: </label>
+            <input name="imagen" id="imagen" type="file" multiple>
+            <br>
+            <input type="submit" value=" Subir archivos">
+            <input type="reset"  value=" Borrar selección">
+        </fieldset>
+    </form>
+</body>
+</html>
