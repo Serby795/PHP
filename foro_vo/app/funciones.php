@@ -7,7 +7,7 @@ function userCheck($user, $password) :bool {
    }
 
    return $check;
-   //return ( strlen($user) >= 8 && $user == strrev($password) );
+   
     
 }
 
