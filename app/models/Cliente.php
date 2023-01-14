@@ -26,13 +26,14 @@ class Cliente
         }
     }
 
+
     //Obtener foto de perfil
     function obtenerFoto()
     {
-        $codigoFoto = sprintf("%'.08d\n", $this->id);
-        $directorio = "app/uploads";
+        $codigoFoto = sprintf("%'.08d", $this->id);
+        $directorio = "app" . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR;
         $enlace = "https://robohash.org/";
-        if (file_exists($directorio . $codigoFoto . ".jpg")) {
+        if (is_file($directorio . $codigoFoto . ".jpg")) {
             $foto = $directorio . $codigoFoto . ".jpg";
         } else {
             $foto = $enlace . $codigoFoto;

@@ -7,7 +7,7 @@
         <td><input type="number" name="id" value="<?= $cli->id ?>" readonly> </td>
         <td rowspan="7">
             <img src="https://flagcdn.com/256x192/<?= $cli->obtenerCodigoPais()?>.png" width="256" height="192" alt="<?= $cli->obtenerPais()?>">
-            <img style="width: 200px" src="<?= $cli->obtenerFoto() ?>" alt="imagen de perfil de <?=$cli->first_name?>">
+            <img style="width: 200px" src="<?=$cli->obtenerFoto()?>" alt="imagen de perfil de <?=$cli->first_name?>">
         </td>
     </tr>
     <tr>
