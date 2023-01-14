@@ -26,6 +26,7 @@ class Cliente
         }
     }
 
+    //Obtener foto de perfil
     function obtenerFoto()
     {
         $codigoFoto = sprintf("%'.08d\n", $this->id);
@@ -40,7 +41,7 @@ class Cliente
     }
     
     //Obtener codigo de pais por ip
-    function obtenerCodigo()
+    function obtenerCodigoPais()
     {
         $info = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $this->ip_address);
         $consulta = json_decode($info);
