@@ -75,7 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
         switch ($_GET['orden']) {
             case "Nuevo":
                 crudAlta();
-                //comentario de prueba
                 break;
             case "Borrar":
                 crudBorrar($_GET['id']);
