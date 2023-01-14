@@ -142,19 +142,7 @@ function crudPostModificar()
 }
 
 //Obtener codigo de pais por ip
-function obtenerCodigo($ip)
-{
-    $info = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip);
-    $consulta = json_decode($info);
-    return $consulta->geoplugin_countryCode;
-}
-//Obtener nombre de pais por ip
-function obtenerPais($ip)
-{
-    $info = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip);
-    $consulta = json_decode($info);
-    return $consulta->geoplugin_countryName;
-}
+
 
 
 //Generar el pdf
@@ -164,18 +152,4 @@ function generarPDF($id) {
     include_once "app/views/generarpdf.php";
 }
 
-//Obtener la foto
-function getFoto($id){
-    $db = AccesoDatos::getModelo();
-    $cli = $db->getCliente($id);
-    $codigoFoto = sprintf("%'.08d\n", $cli->id);
-    $directorio ="app/uploads";
-    $enlace = "https://robohash.org/";
-    if (file_exists($directorio.$codigoFoto.".jpg")){
-        $foto = $directorio.$codigoFoto.".jpg";
-    } else {
-        $foto = $enlace.$codigoFoto;
-    }
-    return $foto;
-}
 
