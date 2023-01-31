@@ -164,6 +164,3 @@ $contenido = ob_get_clean();
 // Muestro la página principal con el contenido generado
 require_once "app/views/principal.php";
 ?>
-</body>
-
-</html>

@@ -22,7 +22,7 @@ if ($_SESSION['intentos'] >= 3) {
     <div class="container">
         
         <h1>
-            Introduzca su usuario y contraseña para acceder al CRUD
+            LOG IN
         </h1>
         <form method="POST">
             <div class="d-inline">
@@ -32,7 +32,7 @@ if ($_SESSION['intentos'] >= 3) {
                 <label>
                     Password: <input type="password" name="password">
                 </label>
-                <input type="submit" value="Log-In"></input>
+                <input type="submit" value="Log-In" class="btn btn-outline-primary"></input>
             </div>
 
         </form>
