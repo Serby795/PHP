@@ -163,3 +163,19 @@ function logIn($user,$password){
         return false;
     }
 }
+
+//Obtener el usuario
+function obtenerUserName($user){
+    $db = AccesoDatos::getModelo();
+    $user = $db->getUser($user);
+    $userName = $user->user;
+    return $userName;
+}
+
+//Obtener el rol
+function obtenerRol($user){
+    $db = AccesoDatos::getModelo();
+    $user = $db->getUser($user);
+    $rol = $user->rol;
+    return $rol;
+}

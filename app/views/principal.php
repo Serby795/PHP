@@ -14,6 +14,7 @@
             <h1>MIS CLIENTES CRUD versión 1.1</h1>
         </div>
         <div id="content">
+        
             <?= $contenido ?>
         </div>
     </div>

@@ -28,19 +28,18 @@ $posAux = $_SESSION['posini'];
 //------------
 
 //Declaro sesion intentos
-if (!isset($_SESSION['intentos'])){
+if (!isset($_SESSION['intentos'])) {
     $_SESSION['intentos'] = 0;
 }
 
 //Compruebo log-in
 if (!isset($_SESSION['login'])) {
     $_SESSION['login'] = false;
-    
 }
 
 
 if ($_SESSION['login'] == true) {
-    
+
 
     ob_start(); // La salida se guarda en el bufer
     if ($_SERVER['REQUEST_METHOD'] == "GET") {
@@ -118,7 +117,12 @@ if ($_SESSION['login'] == true) {
                     crudPostAlta();
                     break;
                 case "Modificar":
-                    crudPostModificar();
+                    if (obtenerRol($user) == 1) {
+                        crudPostModificar();
+                    } else {
+                        $error = "Acceso denegado";
+                        include_once "app/views/error.php";
+                    }
                     break;
                 case "Detalles":; // No hago nada
                 case "Anterior":
@@ -145,12 +149,12 @@ if ($_SESSION['login'] == true) {
 } else {
     include_once "app/views/login.php";
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        
+
         if (logIn(limpiarEntrada($_POST['user']), limpiarEntrada($_POST['password']))) {
             $_SESSION['login'] = true;
+            //$user = obtenerUserName(limpiarEntrada($_POST['user']));
             header("Location: index.php");
-        }
-        else {
+        } else {
             $_SESSION['intentos']++;
         }
     }

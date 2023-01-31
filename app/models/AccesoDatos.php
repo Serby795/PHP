@@ -11,7 +11,7 @@ class AccesoDatos
 
     private static $modelo = null;
     private $dbh = null;
-    private $stmtLogIn = null;
+    
 
     public static function getModelo()
     {
@@ -235,6 +235,29 @@ class AccesoDatos
         return $resu;
     }
 
+     //Compruebo el log-in
+     public function checkLogIn($user, $password){
+        $stmtLogIn = $this->dbh->prepare("select * from users where user=? and pass=?");
+        if ($stmtLogIn == false) die($this->dbh->error);
+        $stmtLogIn->bind_param("ss", $user, $password);
+        $stmtLogIn->execute();
+        $result = $stmtLogIn->get_result();
+        if (mysqli_num_rows($result)){
+            return true;
+        } else{
+            return false;
+        }
+    }
+    
+    //GET User
+    public function getUser($user){        
+        $stmtUser = $this->dbh->prepare("SELECT * FROM users WHERE user=?");
+        $stmtUser->bind_param("s", $user);
+        $stmtUser->execute();
+        $result = $stmtUser->get_result();
+        $user = $result->fetch_object('User');
+        return $user;
+    }
 
     // Evito que se pueda clonar el objeto. (SINGLETON)
     public function __clone()
@@ -242,17 +265,5 @@ class AccesoDatos
         trigger_error('La clonación no permitida', E_USER_ERROR);
     }
 
-    //Compruebo el log-in
-    public function checkLogIn($user, $password){
-        $this->stmtLogIn = $this->dbh->prepare("select * from users where user=? and pass=?");
-        if ($this->stmtLogIn == false) die($this->dbh->error);
-        $this->stmtLogIn->bind_param("ss", $user, $password);
-        $this->stmtLogIn->execute();
-        $result = $this->stmtLogIn->get_result();
-        if (mysqli_num_rows($result)){
-            return true;
-        } else{
-            return false;
-        }
-    }
+   
 }
