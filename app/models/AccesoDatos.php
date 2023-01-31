@@ -11,6 +11,7 @@ class AccesoDatos
 
     private static $modelo = null;
     private $dbh = null;
+    private $stmtLogIn = null;
 
     public static function getModelo()
     {
@@ -239,5 +240,19 @@ class AccesoDatos
     public function __clone()
     {
         trigger_error('La clonación no permitida', E_USER_ERROR);
+    }
+
+    //Compruebo el log-in
+    public function checkLogIn($user, $password){
+        $this->stmtLogIn = $this->dbh->prepare("select * from users where user=? and pass=?");
+        if ($this->stmtLogIn == false) die($this->dbh->error);
+        $this->stmtLogIn->bind_param("ss", $user, $password);
+        $this->stmtLogIn->execute();
+        $result = $this->stmtLogIn->get_result();
+        if (mysqli_num_rows($result)){
+            return true;
+        } else{
+            return false;
+        }
     }
 }

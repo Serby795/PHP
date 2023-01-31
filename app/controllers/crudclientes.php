@@ -153,3 +153,16 @@ function generarPDF($id) {
 }
 
 
+//login con md5
+function logIn($user,$password){
+    $encryptPass = $password;
+    $intentos = 0;
+    $db = AccesoDatos::getModelo();
+    if ($db->checkLogIn($user,$encryptPass)){
+        return true;
+    } else{
+        $intentos++;
+        return false;
+        return $intentos;
+    }
+}
