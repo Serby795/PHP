@@ -20,10 +20,7 @@ if ($_SESSION['intentos'] >= 3) {
 
 <body>
     <div class="container">
-        
-        <h1>
-            LOG IN
-        </h1>
+        <h1>LOG IN</h1>
         <form method="POST">
             <div class="d-inline">
                 <label>
@@ -34,7 +31,6 @@ if ($_SESSION['intentos'] >= 3) {
                 </label>
                 <input type="submit" value="Log-In" class="btn btn-outline-primary"></input>
             </div>
-
         </form>
     </div>
 </body>

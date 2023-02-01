@@ -29,7 +29,7 @@ $posAux = $_SESSION['posini'];
 
 //Declaro sesion intentos
 if (!isset($_SESSION['intentos'])) {
-    $_SESSION['intentos'] = 0;
+    $_SESSION['intentos'] = 1;
 }
 
 //Compruebo log-in
