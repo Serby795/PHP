@@ -10,7 +10,7 @@ Funcionalidades añadidas:
 
 3-Mostrar la bandera del país de dónde es el cliente, obtenido con geoplugin a partir de su ip.
 
-4-Comprobación e-mail implementada
+4-Comprobación e-mail implementada falta ip y teléfono.
 
 5-Mostrar una imagen de perfil del cliente o, si no hay imagen, un retrato de robohash.
 
