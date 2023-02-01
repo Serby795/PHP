@@ -7,6 +7,6 @@
     <title>Error!</title>
 </head>
 <body>
-    <h1><?=$error?></h1>
+    <h1><?=$_SESSION['error']?></h1>
 </body>
 </html>

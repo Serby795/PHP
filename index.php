@@ -1,7 +1,7 @@
 <?php
 session_start();
 define('FPAG', 10); // Número de filas por página
-$error = "";
+$_SESSION['error'] = "";
 
 
 require_once 'app/helpers/util.php';
@@ -120,7 +120,7 @@ if ($_SESSION['login'] == true) {
                     if (obtenerRol($user) == 1) {
                         crudPostModificar();
                     } else {
-                        $error = "Acceso denegado";
+                        $_SESSION['error'] = "Acceso denegado";
                         include_once "app/views/error.php";
                     }
                     break;

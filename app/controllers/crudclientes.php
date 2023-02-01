@@ -130,15 +130,23 @@ function crudPostModificar()
     limpiarArrayEntrada($_POST); //Evito la posible inyección de código
     $cli = new Cliente();
 
-    $cli->id            = $_POST['id'];
-    $cli->first_name    = $_POST['first_name'];
-    $cli->last_name     = $_POST['last_name'];
-    $cli->email         = $_POST['email'];
-    $cli->gender        = $_POST['gender'];
-    $cli->ip_address    = $_POST['ip_address'];
-    $cli->telefono      = $_POST['telefono'];
-    $db = AccesoDatos::getModelo();
-    $db->modCliente($cli);
+    if(!comprobarEmail($_POST['first_name'],$_POST['email'])){
+
+        
+        $cli->id            = $_POST['id'];
+        $cli->first_name    = $_POST['first_name'];
+        $cli->last_name     = $_POST['last_name'];
+        $cli->email         = $_POST['email'];
+        $cli->gender        = $_POST['gender'];
+        $cli->ip_address    = $_POST['ip_address'];
+        $cli->telefono      = $_POST['telefono'];
+        $db = AccesoDatos::getModelo();
+        $db->modCliente($cli);
+    } else{
+        $error = "E-mail repetido";
+        include_once "app/views/error.php";
+        exit();
+    }
 }
 
 //Obtener codigo de pais por ip
@@ -178,4 +186,16 @@ function obtenerRol($user){
     $user = $db->getUser($user);
     $rol = $user->rol;
     return $rol;
+}
+
+
+//Comprobar email
+function comprobarEmail($nombre,$email){
+    $db = AccesoDatos::getModelo();
+    $repetido = $db->emailRepetido($nombre,$email);
+    if($repetido){
+        return true;
+    }else{
+        return false;
+    }
 }

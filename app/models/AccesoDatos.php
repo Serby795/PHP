@@ -259,6 +259,34 @@ class AccesoDatos
         return $user;
     }
 
+
+    //Email repetido
+    public function emailRepetido($nombre,$email):bool{
+        $stmtEmail = $this->dbh->prepare("SELECT * FROM Clientes WHERE first_name=? AND email=?");
+        $stmtEmail->bind_param("ss",$nombre,$email);
+        $stmtEmail->execute();
+        $result1 = $stmtEmail->get_result();
+        $cliente1 = $result1->fetch_object("Cliente");
+        //Consulto dos veces para ver si el email es del mismo cliente para evitar fallos al modificar cliente
+        //También me aseguro de que no hay otro cliente con el mismo email
+        $stmtEmail2 = $this->dbh->prepare("SELECT * FROM Clientes WHERE email=?");
+        $stmtEmail2->bind_param("s", $email);
+        $stmtEmail2->execute();
+        $result2 = $stmtEmail2->get_result(); 
+        $cliente2 = $result2->fetch_object("Cliente");
+
+        if($cliente1){ //Si el cliente1 existe es porque el nombre y el correo son suyos y no se repiten
+            return false; 
+        }else{
+            if ($cliente2){ //Si existe el cliente2 es porque el correo se repite
+                return true;
+            }else{ //Si no existe el cliente2, el correo no se repite
+                return false; 
+            }
+        }
+    
+    }
+
     // Evito que se pueda clonar el objeto. (SINGLETON)
     public function __clone()
     {

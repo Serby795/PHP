@@ -1,7 +1,7 @@
 <?php
 
 if ($_SESSION['intentos'] >= 3) {
-    $error = "Ha superado el límite de intentos, cierre el navegador.";
+    $_SESSION['error'] = "Ha superado el límite de intentos, cierre el navegador.";
     include_once "app/views/error.php";
     exit();
 }
